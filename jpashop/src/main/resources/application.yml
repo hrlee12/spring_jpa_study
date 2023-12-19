@@ -1,0 +1,26 @@
+# yaml은 계층형으로 표현
+# properties에서 spring.datasource.url=으로 표현할 걸 계층형으로
+# 비계층형도 가능
+
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop;
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+#     어플리케이션 실행 시 테이블 drop 후 생성
+      ddl-auto: create
+    properties:
+      hibernate:
+#        System.out으로 찍기
+#        로그로 찍는 게 나음
+#        show_sql: true
+        format_sql: true
+
+#로거 찍기
+logging:
+  level:
+    org.hibernate.SQL: debug
