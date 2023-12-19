@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<!--xhtml 문서종류 : thymeleaf(th)-->
+<!--타임리프의 장점 : 그냥 html문서로 접근해서(순수 렌더링.정적 렌더링) 열 수 있음.
+    그럴 땐 내용이 태그 사이의 내용이 출력
+    서버사이드 렌더링을 하면 th:text의 속성값이 출력-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<!--jsp의 el인가 jstl이 그랬던 것처럼 ${}로 백엔드의 값들에 접근가능-->
+<p th:text="'안녕하세요. ' + ${data}">안녕하세요우. 손님</p>
+</body>
+</html>
