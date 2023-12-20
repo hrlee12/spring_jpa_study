@@ -24,12 +24,12 @@ public class MemberRepositoryTest {
     // 그래서 트랜잭션 생성
     // 트랜잭션 끝난 후 롤백해버림.
     @Transactional
-//    @Rollback(false)
+    @Rollback(false)
     public void testMember() throws Exception {
         //given
         //변수 준비
         Member member = new Member();
-        member.setUsername("memberA");
+        member.setUsername("memberC");
 
         //when
         //메서드 실행
