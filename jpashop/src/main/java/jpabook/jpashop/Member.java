@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 //@Entity : DB의 테이블과 맵핑되는 클래스
-@Entity
+//@Entity
 @Getter
 @Setter
 public class Member {
