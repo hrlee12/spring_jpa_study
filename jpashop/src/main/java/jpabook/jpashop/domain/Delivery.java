@@ -3,6 +3,9 @@ package jpabook.jpashop.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import static jakarta.persistence.FetchType.LAZY;
+
+
 @Entity
 @Getter
 public class Delivery {
@@ -10,7 +13,7 @@ public class Delivery {
     @Column(name="delivery_id")
     private String id;
 
-    @OneToOne(mappedBy="delivery")
+    @OneToOne(mappedBy="delivery", fetch = LAZY)
     private Order order;
 
     private Address address;
@@ -18,4 +21,7 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
 
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }
