@@ -1,5 +1,7 @@
 package jpabook.jpashop;
 
+
+import jpabook.jpashop.repository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
+import jpabook.jpashop.domain.Member;
 import static org.junit.Assert.*;
 
 // @RunWith: junit으로 어떤 녀석을 테스트? String 관련된 걸로 테스트
@@ -16,6 +18,8 @@ import static org.junit.Assert.*;
 // 테스트임을 나타냄.
 @SpringBootTest
 public class MemberRepositoryTest {
+
+    // 테스트 클래스는 생성자 없음. 못 만듦.
     @Autowired
     MemberRepository memberRepository;
 
@@ -29,12 +33,12 @@ public class MemberRepositoryTest {
         //given
         //변수 준비
         Member member = new Member();
-        member.setUsername("memberC");
+        member.setName("memberC");
 
         //when
         //메서드 실행
-        long saveId = memberRepository.save(member);
-        Member findMember = memberRepository.find(saveId);
+        memberRepository.save(member);
+        Member findMember = memberRepository.findOne(member.getId());
 
         //then
         //검증
@@ -47,7 +51,7 @@ public class MemberRepositoryTest {
         // 이미 영속성 컨텍스트에 memberA 엔티티가 저장되어 있으므로 1차 캐시에서 확인하고 가져옴
         // DB에 다시 접근하지 않음.
         Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+        Assertions.assertThat(findMember.getName()).isEqualTo(member.getName());
         // 엔티티는 프라이머리 키를 기준으로 같은 엔티티인지 구분
         Assertions.assertThat(findMember).isEqualTo(member);
     }

@@ -1,7 +1,6 @@
 package jpabook.jpashop;
 
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
@@ -11,7 +10,7 @@ import lombok.Setter;
 //@Entity
 @Getter
 @Setter
-public class Member {
+public class Member_test {
 //  @Id : primaryKey임을 나타냄
 //  @GeneratedValue : 기본키 자동생성 = autoIncrement (strategy 지정 가능)
     @Id @GeneratedValue

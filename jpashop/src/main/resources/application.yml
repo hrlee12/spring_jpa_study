@@ -12,7 +12,9 @@ spring:
   jpa:
     hibernate:
 #     어플리케이션 실행 시 테이블 drop 후 생성
+#     create-drop은 애플리케이션 종료시에 테이블 drop
       ddl-auto: create
+
     properties:
       hibernate:
 #        System.out으로 찍기
