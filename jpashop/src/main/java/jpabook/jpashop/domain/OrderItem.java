@@ -12,7 +12,7 @@ import static jakarta.persistence.FetchType.LAZY;
 public class OrderItem {
     @Id @GeneratedValue
     @Column(name="order_item_id")
-    private String id;
+    private Long id;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name="item_id")

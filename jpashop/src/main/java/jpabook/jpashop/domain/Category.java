@@ -13,7 +13,7 @@ import static jakarta.persistence.FetchType.LAZY;
 public class Category {
     @Id @GeneratedValue
     @Column(name="category_id")
-    private String id;
+    private Long id;
     private String name;
 
     @ManyToOne (fetch = LAZY)
