@@ -3,11 +3,13 @@ package jpabook.jpashop.domain;
 import jakarta.persistence.*;
 import jpabook.jpashop.domain.item.Item;
 import lombok.Getter;
+import lombok.Setter;
 
 import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
+@Setter
 @Table(name="order_item")
 public class OrderItem {
     @Id @GeneratedValue
@@ -26,11 +28,27 @@ public class OrderItem {
     private int count;
 
 
-    public void setOrder(Order order) {
-        this.order = order;
+    //==생성 메서드==//
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setOrderPrice(orderPrice);
+        orderItem.setCount(count);
+        item.removeStock(count);
+        return orderItem;
     }
 
-    public void setItem(Item item ) {
-        this.item = item;
+    //==비즈니스 로직==//
+    /** 주문 취소 */
+    public void cancel() {
+        getItem().addStock(count);
     }
+
+    //==조회 로직==//
+    /** 주문상품 전체 가격 조회 */
+    public long getTotalPrice() {
+        return getOrderPrice() * getCount();
+    }
+
+
 }
