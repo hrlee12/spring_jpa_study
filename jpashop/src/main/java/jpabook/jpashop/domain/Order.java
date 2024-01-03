@@ -1,7 +1,9 @@
 package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -15,6 +17,9 @@ import static jakarta.persistence.FetchType.LAZY;
 @Getter
 @Setter
 @Table(name="orders")
+// 기본 생성자인데 접근제어자가 protected다. 즉, 외부에서 쓰지 말아라. 라는 뜻
+// 엔티티는 생성자가 protected까지만 됨
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
     @Id @GeneratedValue
     @Column(name="order_id")
